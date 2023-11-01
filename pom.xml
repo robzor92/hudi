@@ -26,10 +26,10 @@
     <version>21</version>
   </parent>
 
-  <groupId>org.apache.hudi</groupId>
+  <groupId>io.hops.hudi</groupId>
   <artifactId>hudi</artifactId>
   <packaging>pom</packaging>
-  <version>0.14.0</version>
+  <version>0.14.0.0</version>
   <description>Apache Hudi brings stream style processing on big data</description>
   <url>https://github.com/apache/hudi</url>
   <name>Hudi</name>
@@ -115,10 +115,10 @@
     <log4j2.version>2.17.2</log4j2.version>
     <slf4j.version>1.7.36</slf4j.version>
     <joda.version>2.9.9</joda.version>
-    <hadoop.version>2.10.1</hadoop.version>
-    <hive.groupid>org.apache.hive</hive.groupid>
-    <hive.version>2.3.1</hive.version>
-    <hive.parquet.version>1.10.1</hive.parquet.version>
+    <hadoop.version>3.2.0.9-RC0</hadoop.version>
+    <hive.groupid>io.hops.hive</hive.groupid>
+    <hive.version>3.0.0.11</hive.version>
+    <hive.parquet.version>1.11.0</hive.parquet.version>
     <hive.avro.version>1.8.2</hive.avro.version>
     <presto.version>0.273</presto.version>
     <trino.version>390</trino.version>
@@ -206,9 +206,9 @@
     <argLine>-Xmx2g</argLine>
     <jacoco.version>0.8.8</jacoco.version>
     <presto.bundle.bootstrap.scope>compile</presto.bundle.bootstrap.scope>
-    <presto.bundle.bootstrap.shade.prefix>org.apache.hudi.</presto.bundle.bootstrap.shade.prefix>
+    <presto.bundle.bootstrap.shade.prefix>io.hops.hudi.</presto.bundle.bootstrap.shade.prefix>
     <trino.bundle.bootstrap.scope>compile</trino.bundle.bootstrap.scope>
-    <trino.bundle.bootstrap.shade.prefix>org.apache.hudi.</trino.bundle.bootstrap.shade.prefix>
+    <trino.bundle.bootstrap.shade.prefix>io.hops.hudi.</trino.bundle.bootstrap.shade.prefix>
     <shadeSources>true</shadeSources>
     <zk-curator.version>2.7.1</zk-curator.version>
     <disruptor.version>3.4.2</disruptor.version>
@@ -302,7 +302,7 @@
           </sourceDirectories>
           <!-- NOTE: This property is only available in Maven >= 3.3.1 -->
           <propertyExpansion>basedir=${maven.multiModuleProjectDirectory}</propertyExpansion>
-          <excludes>**\/generated-sources\/,org/apache/hudi/metaserver/thrift/*</excludes>
+          <excludes>**\/generated-sources\/,io.hops.hudi/metaserver/thrift/*</excludes>
         </configuration>
         <executions>
           <execution>
@@ -472,93 +472,93 @@
             <!-- org.apache.httpcomponents -->
             <relocation>
               <pattern>org.apache.http.</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.http.</shadedPattern>
+              <shadedPattern>io.hops.hudi.org.apache.http.</shadedPattern>
             </relocation>
             <!-- hbase -->
             <relocation>
-              <pattern>org.apache.hadoop.hbase.</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.hbase.</shadedPattern>
+              <pattern>io.hops.hbase.</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.hbase.</shadedPattern>
               <excludes>
-                <exclude>org.apache.hadoop.hbase.KeyValue$KeyComparator</exclude>
+                <exclude>io.hops.hbase.KeyValue$KeyComparator</exclude>
               </excludes>
             </relocation>
             <relocation>
               <pattern>org.apache.hbase.</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hbase.</shadedPattern>
+              <shadedPattern>io.hops.hudi.org.apache.hbase.</shadedPattern>
             </relocation>
             <relocation>
               <pattern>org.apache.htrace.</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.htrace.</shadedPattern>
+              <shadedPattern>io.hops.hudi.org.apache.htrace.</shadedPattern>
             </relocation>
             <!-- hbase
-                 The classes below in org.apache.hadoop.metrics2 package come from
+                 The classes below in io.hops.metrics2 package come from
                  hbase-hadoop-compat and hbase-hadoop2-compat, which have to be shaded one by one,
-                 instead of shading all classes under org.apache.hadoop.metrics2 including ones
+                 instead of shading all classes under io.hops.metrics2 including ones
                  from hadoop. -->
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.MetricHistogram</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.MetricHistogram
+              <pattern>io.hops.metrics2.MetricHistogram</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.MetricHistogram
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.MetricsExecutor</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.MetricsExecutor
+              <pattern>io.hops.metrics2.MetricsExecutor</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.MetricsExecutor
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.impl.JmxCacheBuster</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.impl.JmxCacheBuster
+              <pattern>io.hops.metrics2.impl.JmxCacheBuster</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.impl.JmxCacheBuster
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.lib.DefaultMetricsSystemHelper</pattern>
+              <pattern>io.hops.metrics2.lib.DefaultMetricsSystemHelper</pattern>
               <shadedPattern>
-                org.apache.hudi.org.apache.hadoop.metrics2.lib.DefaultMetricsSystemHelper
+                io.hops.hudi.io.hops.metrics2.lib.DefaultMetricsSystemHelper
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.lib.DynamicMetricsRegistry</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.lib.DynamicMetricsRegistry
+              <pattern>io.hops.metrics2.lib.DynamicMetricsRegistry</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.lib.DynamicMetricsRegistry
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.lib.MetricsExecutorImpl</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.lib.MetricsExecutorImpl
+              <pattern>io.hops.metrics2.lib.MetricsExecutorImpl</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.lib.MetricsExecutorImpl
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.lib.MutableFastCounter</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.lib.MutableFastCounter
+              <pattern>io.hops.metrics2.lib.MutableFastCounter</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.lib.MutableFastCounter
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.lib.MutableHistogram</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.lib.MutableHistogram
+              <pattern>io.hops.metrics2.lib.MutableHistogram</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.lib.MutableHistogram
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.lib.MutableRangeHistogram</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.lib.MutableRangeHistogram
+              <pattern>io.hops.metrics2.lib.MutableRangeHistogram</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.lib.MutableRangeHistogram
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.lib.MutableSizeHistogram</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.lib.MutableSizeHistogram
+              <pattern>io.hops.metrics2.lib.MutableSizeHistogram</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.lib.MutableSizeHistogram
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.lib.MutableTimeHistogram</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.lib.MutableTimeHistogram
+              <pattern>io.hops.metrics2.lib.MutableTimeHistogram</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.lib.MutableTimeHistogram
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.util.MetricQuantile</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.util.MetricQuantile
+              <pattern>io.hops.metrics2.util.MetricQuantile</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.util.MetricQuantile
               </shadedPattern>
             </relocation>
             <relocation>
-              <pattern>org.apache.hadoop.metrics2.util.MetricSampleQuantiles</pattern>
-              <shadedPattern>org.apache.hudi.org.apache.hadoop.metrics2.util.MetricSampleQuantiles
+              <pattern>io.hops.metrics2.util.MetricSampleQuantiles</pattern>
+              <shadedPattern>io.hops.hudi.io.hops.metrics2.util.MetricSampleQuantiles
               </shadedPattern>
             </relocation>
           </relocations>
@@ -962,6 +962,10 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
           </exclusion>
+          <exclusion>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
@@ -1134,7 +1138,7 @@
 
       <!-- Hadoop -->
       <dependency>
-        <groupId>org.apache.hadoop</groupId>
+        <groupId>io.hops</groupId>
         <artifactId>hadoop-client</artifactId>
         <version>${hadoop.version}</version>
         <scope>provided</scope>
@@ -1154,7 +1158,7 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.apache.hadoop</groupId>
+        <groupId>io.hops</groupId>
         <artifactId>hadoop-common</artifactId>
         <version>${hadoop.version}</version>
         <scope>provided</scope>
@@ -1178,7 +1182,7 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.apache.hadoop</groupId>
+        <groupId>io.hops</groupId>
         <artifactId>hadoop-hdfs</artifactId>
         <version>${hadoop.version}</version>
         <scope>provided</scope>
@@ -1190,7 +1194,7 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.apache.hadoop</groupId>
+        <groupId>io.hops</groupId>
         <artifactId>hadoop-auth</artifactId>
         <version>${hadoop.version}</version>
         <scope>provided</scope>
@@ -1206,7 +1210,7 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.apache.hadoop</groupId>
+        <groupId>io.hops</groupId>
         <artifactId>hadoop-mapreduce-client-core</artifactId>
         <version>${hadoop.version}</version>
         <scope>provided</scope>
@@ -1226,7 +1230,7 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.apache.hadoop</groupId>
+        <groupId>io.hops</groupId>
         <artifactId>hadoop-mapreduce-client-common</artifactId>
         <version>${hadoop.version}</version>
         <scope>provided</scope>
@@ -1246,7 +1250,7 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.apache.hadoop</groupId>
+        <groupId>io.hops</groupId>
         <artifactId>hadoop-hdfs</artifactId>
         <classifier>tests</classifier>
         <scope>test</scope>
@@ -1259,7 +1263,7 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.apache.hadoop</groupId>
+        <groupId>io.hops</groupId>
         <artifactId>hadoop-common</artifactId>
         <classifier>tests</classifier>
         <version>${hadoop.version}</version>
@@ -1390,7 +1394,7 @@
       </dependency>
       <dependency>
         <groupId>${hive.groupid}</groupId>
-        <artifactId>hive-metastore</artifactId>
+        <artifactId>hive-standalone-metastore</artifactId>
         <version>${hive.version}</version>
         <scope>provided</scope>
         <exclusions>
@@ -1738,6 +1742,11 @@
     <repository>
       <id>confluent</id>
       <url>https://packages.confluent.io/maven/</url>
+    </repository>
+    <repository>
+      <id>hops-release</id>
+      <name>Hops Release Repository</name>
+      <url>https://archiva.hops.works/repository/Hops/</url>
     </repository>
   </repositories>
 
@@ -2620,5 +2629,18 @@
     </profile>
 
   </profiles>
+
+  <distributionManagement>
+    <repository>
+      <id>Hops</id>
+      <name>Hops Repo</name>
+      <url>https://archiva.hops.works/repository/Hops/</url>
+    </repository>
+    <snapshotRepository>
+      <id>Hops</id>
+      <name>Hops Repo</name>
+      <url>https://archiva.hops.works/repository/Hops/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 </project>

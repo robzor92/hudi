@@ -35,7 +35,7 @@ coverage:
 # --------------
 # which folders/files to ignore
 ignore:
-  - "hudi-common/src/main/java/org/apache/hudi/avro/model/*"
+  - "hudi-common/src/main/java/io.hops.hudi/avro/model/*"
   - "hudi-common/src/main/java/org/apache/hudi/avro/MercifulJsonConverter.java"
   - "hudi-common/src/main/java/org/apache/hudi/common/HoodieJsonPayload"
   - "hudi-utilities/src/main/java/org/apache/hudi/utilities/HoodieCleaner.java"
